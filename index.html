@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de João Vitor, desenvolvedor Front-end e estudante de Engenharia de Computação.">
+  <meta name="theme-color" content="#1e1e1e">
+  <title>João Vitor — Front-end Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#hero">Pular para o conteúdo</a>
+
+  <div class="app-shell">
+    <header class="titlebar" aria-label="Barra do editor">
+      <div class="window-controls" aria-hidden="true">
+        <span class="control close"></span><span class="control minimize"></span><span class="control maximize"></span>
+      </div>
+      <p><span class="icon-code" aria-hidden="true">&lt;/&gt;</span> portfolio-index-html — Visual Studio Code</p>
+      <button class="menu-toggle" type="button" aria-label="Abrir navegação" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <div class="workspace">
+      <aside class="activity-bar" aria-label="Atalhos do editor">
+        <button class="activity active" type="button" aria-label="Arquivos" data-tooltip="Explorer">▱</button>
+        <a class="activity" href="#projects" aria-label="Buscar projetos" data-tooltip="Projetos">⌕</a>
+        <a class="activity" href="#contact" aria-label="Ir para contato" data-tooltip="Contato">⑂</a>
+        <button class="activity theme-toggle" type="button" aria-label="Alternar tema" data-tooltip="Tema">◐</button>
+      </aside>
+
+      <aside class="explorer" aria-label="Explorador do portfólio">
+        <p class="explorer-title">EXPLORER</p>
+        <p class="folder"><span>⌄</span> PORTFOLIO-INDEX-HTML</p>
+        <nav id="main-nav" aria-label="Navegação principal">
+          <a href="#hero" class="file-link active"><span class="html-icon">5</span> index.html</a>
+          <a href="#about" class="file-link"><span class="css-icon">#</span> sobre.css</a>
+          <a href="#skills" class="file-link"><span class="js-icon">JS</span> skills.js</a>
+          <a href="#projects" class="file-link"><span class="json-icon">{}</span> projetos.json</a>
+          <a href="#contact" class="file-link"><span class="md-icon">M↓</span> contato.md</a>
+        </nav>
+      </aside>
+
+      <main class="editor" id="editor">
+        <div class="tabs" aria-hidden="true">
+          <div class="tab active"><span class="html-icon">5</span> index.html <span class="tab-close">×</span></div>
+        </div>
+
+        <div class="breadcrumb" aria-hidden="true">portfolio-index-html <span>›</span> index.html <span>›</span> body</div>
+
+        <div class="code-document">
+          <div class="code-line"><span class="line-number">1</span><code><span class="syntax-tag">&lt;!DOCTYPE</span> <span class="syntax-attr">html</span><span class="syntax-tag">&gt;</span></code></div>
+          <div class="code-line"><span class="line-number">2</span><code><span class="syntax-tag">&lt;html</span> <span class="syntax-attr">lang</span>=<span class="syntax-string">&quot;pt-BR&quot;</span><span class="syntax-tag">&gt;</span></code></div>
+          <div class="code-line"><span class="line-number">3</span><code></code></div>
+          <div class="code-line"><span class="line-number">4</span><code>  <span class="syntax-tag">&lt;body&gt;</span></code></div>
+
+          <section id="hero" class="code-section hero" data-nav="hero" aria-labelledby="hero-title">
+            <div class="code-line"><span class="line-number">5</span><code>    <span class="syntax-tag">&lt;header</span> <span class="syntax-attr">class</span>=<span class="syntax-string">&quot;hero&quot;</span><span class="syntax-tag">&gt;</span></code></div>
+            <div class="code-line"><span class="line-number">6</span><code>      <span class="syntax-comment">&lt;!-- Olá, mundo. Que bom ter você aqui. --&gt;</span></code></div>
+            <div class="code-line content-line"><span class="line-number">7</span><div class="code-content"><span class="indent">      </span><span class="syntax-tag">&lt;h1&gt;</span><h1 id="hero-title">João Vitor<span class="cursor" aria-hidden="true"></span></h1><span class="syntax-tag">&lt;/h1&gt;</span></div></div>
+            <div class="code-line content-line"><span class="line-number">8</span><div class="code-content"><span class="indent">      </span><span class="syntax-tag">&lt;p&gt;</span><p class="hero-role">Desenvolvedor Front-end.</p><span class="syntax-tag">&lt;/p&gt;</span></div></div>
+            <div class="code-line content-line"><span class="line-number">9</span><div class="code-content"><span class="indent">      </span><span class="syntax-tag">&lt;p&gt;</span><p class="hero-subtitle">Interfaces que unem código limpo, design e propósito.</p><span class="syntax-tag">&lt;/p&gt;</span></div></div>
+            <div class="code-line content-line"><span class="line-number">10</span><div class="code-content"><span class="indent">      </span><span class="syntax-tag">&lt;a</span> <span class="syntax-attr">href</span>=<span class="syntax-string">&quot;#projects&quot;</span><span class="syntax-tag">&gt;</span><a class="inline-link primary-link" href="#projects">Ver projetos <span aria-hidden="true">→</span></a><span class="syntax-tag">&lt;/a&gt;</span></div></div>
+            <div class="code-line"><span class="line-number">11</span><code>    <span class="syntax-tag">&lt;/header&gt;</span></code></div>
+          </section>
+
+          <div class="code-line"><span class="line-number">12</span><code></code></div>
+
+          <section id="about" class="code-section" data-nav="about" aria-labelledby="about-title">
+            <div class="code-line"><span class="line-number">13</span><code>    <span class="syntax-tag">&lt;section</span> <span class="syntax-attr">id</span>=<span class="syntax-string">&quot;sobre&quot;</span><span class="syntax-tag">&gt;</span></code></div>
+            <div class="code-line content-line"><span class="line-number">14</span><div class="code-content"><span class="indent">      </span><span class="syntax-tag">&lt;h2&gt;</span><h2 id="about-title">Sobre mim</h2><span class="syntax-tag">&lt;/h2&gt;</span></div></div>
+            <div class="code-line content-line text-block-line"><span class="line-number">15</span><div class="code-content"><span class="indent">      </span><span class="syntax-tag">&lt;p&gt;</span><p>Sou João Vitor, desenvolvedor Front-end e estudante de Engenharia de Computação. Transformo ideias em experiências digitais acessíveis, responsivas e agradáveis de usar.</p><span class="syntax-tag">&lt;/p&gt;</span></div></div>
+            <div class="code-line content-line text-block-line"><span class="line-number">16</span><div class="code-content"><span class="indent">      </span><span class="syntax-tag">&lt;p&gt;</span><p>Gosto do encontro entre lógica e criatividade — onde cada detalhe visual também resolve um problema real.</p><span class="syntax-tag">&lt;/p&gt;</span></div></div>
+            <div class="code-line"><span class="line-number">17</span><code>    <span class="syntax-tag">&lt;/section&gt;</span></code></div>
+          </section>
+
+          <div class="code-line"><span class="line-number">18</span><code></code></div>
+
+          <section id="skills" class="code-section" data-nav="skills" aria-labelledby="skills-title">
+            <div class="code-line"><span class="line-number">19</span><code>    <span class="syntax-tag">&lt;section</span> <span class="syntax-attr">id</span>=<span class="syntax-string">&quot;skills&quot;</span><span class="syntax-tag">&gt;</span></code></div>
+            <div class="code-line content-line"><span class="line-number">20</span><div class="code-content"><span class="indent">      </span><span class="syntax-tag">&lt;h2&gt;</span><h2 id="skills-title">Tecnologias</h2><span class="syntax-tag">&lt;/h2&gt;</span></div></div>
+            <div class="code-line"><span class="line-number">21</span><code>      <span class="syntax-tag">&lt;ul</span> <span class="syntax-attr">class</span>=<span class="syntax-string">&quot;stack&quot;</span><span class="syntax-tag">&gt;</span></code></div>
+            <div class="code-line content-line skills-line"><span class="line-number">22</span><div class="code-content"><span class="indent">        </span><ul class="skill-list" aria-label="Lista de tecnologias">
+              <li><span class="syntax-tag">&lt;li&gt;</span><span class="skill-chip">HTML5</span><span class="syntax-tag">&lt;/li&gt;</span></li>
+              <li><span class="syntax-tag">&lt;li&gt;</span><span class="skill-chip">CSS3</span><span class="syntax-tag">&lt;/li&gt;</span></li>
+              <li><span class="syntax-tag">&lt;li&gt;</span><span class="skill-chip">JavaScript</span><span class="syntax-tag">&lt;/li&gt;</span></li>
+              <li><span class="syntax-tag">&lt;li&gt;</span><span class="skill-chip">React</span><span class="syntax-tag">&lt;/li&gt;</span></li>
+              <li><span class="syntax-tag">&lt;li&gt;</span><span class="skill-chip">Git</span><span class="syntax-tag">&lt;/li&gt;</span></li>
+              <li><span class="syntax-tag">&lt;li&gt;</span><span class="skill-chip">Figma</span><span class="syntax-tag">&lt;/li&gt;</span></li>
+            </ul></div></div>
+            <div class="code-line"><span class="line-number">23</span><code>      <span class="syntax-tag">&lt;/ul&gt;</span></code></div>
+            <div class="code-line"><span class="line-number">24</span><code>    <span class="syntax-tag">&lt;/section&gt;</span></code></div>
+          </section>
+
+          <div class="code-line"><span class="line-number">25</span><code></code></div>
+
+          <section id="projects" class="code-section" data-nav="projects" aria-labelledby="projects-title">
+            <div class="code-line"><span class="line-number">26</span><code>    <span class="syntax-tag">&lt;section</span> <span class="syntax-attr">id</span>=<span class="syntax-string">&quot;projetos&quot;</span><span class="syntax-tag">&gt;</span></code></div>
+            <div class="code-line content-line"><span class="line-number">27</span><div class="code-content"><span class="indent">      </span><span class="syntax-tag">&lt;h2&gt;</span><h2 id="projects-title">Projetos selecionados</h2><span class="syntax-tag">&lt;/h2&gt;</span></div></div>
+            <div class="code-line content-line projects-line"><span class="line-number">28</span><div class="code-content"><span class="indent">      </span><div class="project-grid">
+              <article class="project-card" tabindex="0">
+                <div class="project-index">01</div>
+                <p class="project-tag">// produtividade</p>
+                <h3>TaskFlow</h3>
+                <p>Aplicação de tarefas com fluxo simples, filtros inteligentes e foco no que importa.</p>
+                <ul aria-label="Tecnologias do TaskFlow"><li>React</li><li>CSS</li><li>LocalStorage</li></ul>
+                <a href="#contact" aria-label="Conversar sobre o projeto TaskFlow">ver projeto <span>↗</span></a>
+              </article>
+              <article class="project-card" tabindex="0">
+                <div class="project-index">02</div>
+                <p class="project-tag">// finanças</p>
+                <h3>Finance Dashboard</h3>
+                <p>Painel responsivo para acompanhar receitas, despesas e metas sem complicação.</p>
+                <ul aria-label="Tecnologias do Finance Dashboard"><li>JavaScript</li><li>Chart.js</li><li>API</li></ul>
+                <a href="#contact" aria-label="Conversar sobre o Finance Dashboard">ver projeto <span>↗</span></a>
+              </article>
+              <article class="project-card" tabindex="0">
+                <div class="project-index">03</div>
+                <p class="project-tag">// experiência</p>
+                <h3>DevNotes</h3>
+                <p>Bloco de notas para desenvolvedores, feito para registrar ideias sem quebrar o fluxo.</p>
+                <ul aria-label="Tecnologias do DevNotes"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+                <a href="#contact" aria-label="Conversar sobre o DevNotes">ver projeto <span>↗</span></a>
+              </article>
+            </div></div></div>
+            <div class="code-line"><span class="line-number">29</span><code>    <span class="syntax-tag">&lt;/section&gt;</span></code></div>
+          </section>
+
+          <div class="code-line"><span class="line-number">30</span><code></code></div>
+
+          <section id="contact" class="code-section contact" data-nav="contact" aria-labelledby="contact-title">
+            <div class="code-line"><span class="line-number">31</span><code>    <span class="syntax-tag">&lt;footer</span> <span class="syntax-attr">id</span>=<span class="syntax-string">&quot;contato&quot;</span><span class="syntax-tag">&gt;</span></code></div>
+            <div class="code-line content-line"><span class="line-number">32</span><div class="code-content"><span class="indent">      </span><span class="syntax-tag">&lt;h2&gt;</span><h2 id="contact-title">Vamos criar algo juntos?</h2><span class="syntax-tag">&lt;/h2&gt;</span></div></div>
+            <div class="code-line content-line text-block-line"><span class="line-number">33</span><div class="code-content"><span class="indent">      </span><span class="syntax-tag">&lt;p&gt;</span><p>Estou sempre aberto a novas ideias, projetos e boas conversas.</p><span class="syntax-tag">&lt;/p&gt;</span></div></div>
+            <div class="code-line content-line contact-links-line"><span class="line-number">34</span><div class="code-content"><span class="indent">      </span><div class="contact-links">
+              <a href="mailto:joaovitor.dev@email.com">email<span aria-hidden="true">@</span></a>
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer">github<span aria-hidden="true">↗</span></a>
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">linkedin<span aria-hidden="true">↗</span></a>
+            </div></div></div>
+            <div class="code-line"><span class="line-number">35</span><code>      <span class="syntax-comment">&lt;!-- Feito com café, curiosidade e algumas linhas de código. --&gt;</span></code></div>
+            <div class="code-line"><span class="line-number">36</span><code>    <span class="syntax-tag">&lt;/footer&gt;</span></code></div>
+          </section>
+
+          <div class="code-line"><span class="line-number">37</span><code>  <span class="syntax-tag">&lt;/body&gt;</span></code></div>
+          <div class="code-line"><span class="line-number">38</span><code><span class="syntax-tag">&lt;/html&gt;</span></code></div>
+          <div class="code-line eof-line"><span class="line-number">39</span><code><span class="syntax-comment">// fim do arquivo — mas talvez não da conversa :)</span></code></div>
+        </div>
+
+        <aside class="minimap" aria-hidden="true"><div class="minimap-viewport"></div></aside>
+      </main>
+    </div>
+
+    <footer class="statusbar" aria-label="Barra de status">
+      <div class="status-left"><span class="branch">⑂ main*</span><span>↻</span><span>0 erros</span><span>0 avisos</span></div>
+      <div class="status-right"><span id="status-position">Ln 1, Col 1</span><span>UTF-8</span><span>HTML</span><time id="clock" aria-label="Horário atual">--:--</time><span class="status-smile" title="Você encontrou um easter egg">☻</span></div>
+    </footer>
+  </div>
+
+  <div class="command-palette" role="dialog" aria-modal="true" aria-label="Navegação rápida" hidden>
+    <div class="palette-box">
+      <label for="palette-input">&gt; Ir para...</label>
+      <input id="palette-input" type="text" autocomplete="off" placeholder="Digite: sobre, skills, projetos ou contato">
+      <p><kbd>Enter</kbd> para navegar · <kbd>Esc</kbd> para fechar</p>
+    </div>
+  </div>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
