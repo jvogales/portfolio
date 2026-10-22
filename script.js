@@ -1,153 +1,240 @@
 (() => {
   "use strict";
+  document.documentElement.classList.add("js");
 
-  const lines = [...document.querySelectorAll(".code-line")];
-  const sections = [...document.querySelectorAll("[data-nav]")];
-  const navLinks = [...document.querySelectorAll(".file-link")];
-  const explorer = document.querySelector(".explorer");
-  const menuToggle = document.querySelector(".menu-toggle");
-  const clock = document.querySelector("#clock");
-  const position = document.querySelector("#status-position");
-  const themeToggle = document.querySelector(".theme-toggle");
-  const palette = document.querySelector(".command-palette");
-  const paletteInput = document.querySelector("#palette-input");
-  const toast = document.querySelector(".toast");
-  const minimapViewport = document.querySelector(".minimap-viewport");
-  let toastTimer;
+  const $ = (selector) => document.querySelector(selector);
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const header = $(".header");
+  const menuButton = $(".menu-toggle");
+  const nav = $("#main-nav");
+  const links = [...nav.querySelectorAll("a")];
+  const sections = links.map((link) => $(link.getAttribute("href")));
 
-  const showToast = (message) => {
-    toast.textContent = message;
-    toast.classList.add("show");
-    window.clearTimeout(toastTimer);
-    toastTimer = window.setTimeout(() => toast.classList.remove("show"), 2600);
-  };
+  function closeMenu(restoreFocus = false) {
+    nav.classList.remove("open");
+    menuButton.setAttribute("aria-expanded", "false");
+    $(".menu-label").textContent = "Menu";
+    if (restoreFocus) menuButton.focus();
+  }
 
-  const updateClock = () => {
-    clock.textContent = new Intl.DateTimeFormat("pt-BR", {
-      hour: "2-digit",
-      minute: "2-digit"
-    }).format(new Date());
-  };
+  menuButton.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", String(open));
+    $(".menu-label").textContent = open ? "Fechar" : "Menu";
+  });
+  links.forEach((link) => link.addEventListener("click", () => closeMenu()));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && nav.classList.contains("open"))
+      closeMenu(true);
+  });
+  document.addEventListener("click", (event) => {
+    if (!header.contains(event.target)) closeMenu();
+  });
+  window
+    .matchMedia("(min-width: 821px)")
+    .addEventListener("change", () => closeMenu());
 
-  const setActiveSection = (id) => {
-    navLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${id}`));
-  };
+  let scrollPending = false;
+  function updateNavigation() {
+    const offset = header.offsetHeight + 100;
+    let active = sections[0];
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= offset) active = section;
+    }
+    if (
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 5
+    ) {
+      active = sections[sections.length - 1];
+    }
+    links.forEach((link) => {
+      if (link.hash === `#${active.id}`)
+        link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+    header.classList.toggle("scrolled", window.scrollY > 20);
+    scrollPending = false;
+  }
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!scrollPending) {
+        scrollPending = true;
+        window.requestAnimationFrame(updateNavigation);
+      }
+    },
+    { passive: true },
+  );
+  updateNavigation();
 
-  const sectionObserver = new IntersectionObserver((entries) => {
-    const visible = entries
-      .filter((entry) => entry.isIntersecting)
-      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (visible) setActiveSection(visible.target.dataset.nav);
-  }, { rootMargin: "-20% 0px -55%", threshold: [0.05, 0.25, 0.5] });
+  const disclosure = $(".disclosure-button");
+  const extraExperience = $("#more-experience");
+  extraExperience.hidden = true;
+  disclosure.hidden = false;
+  disclosure.addEventListener("click", () => {
+    const expanded = disclosure.getAttribute("aria-expanded") !== "true";
+    disclosure.setAttribute("aria-expanded", String(expanded));
+    extraExperience.hidden = !expanded;
+    $(".disclosure-label").textContent = expanded
+      ? "Mostrar menos da trajetória"
+      : "Mostrar mais da trajetória";
+    $(".disclosure-symbol").textContent = expanded ? "−" : "+";
+    if (
+      expanded &&
+      !reducedMotion.matches &&
+      !document.body.classList.contains("motion-paused")
+    ) {
+      extraExperience.animate(
+        [
+          { opacity: 0, transform: "translateY(-8px)" },
+          { opacity: 1, transform: "translateY(0)" },
+        ],
+        { duration: 300, easing: "ease-out" },
+      );
+    }
+  });
 
-  sections.forEach((section) => sectionObserver.observe(section));
+  const copyButton = $(".copy-button");
+  const copyStatus = $("#copy-status");
+  copyButton.addEventListener("click", async () => {
+    copyButton.disabled = true;
+    try {
+      await navigator.clipboard.writeText("orlandinijoao9@gmail.com");
+      copyStatus.textContent = "E-mail copiado para a área de transferência.";
+    } catch {
+      copyStatus.textContent =
+        "Não foi possível copiar. Selecione o endereço acima ou clique nele para enviar um e-mail.";
+    } finally {
+      copyButton.disabled = false;
+    }
+  });
+  $("#year").textContent = new Intl.DateTimeFormat("pt-BR", {
+    year: "numeric",
+    timeZone: "America/Sao_Paulo",
+  }).format(new Date());
 
-  const updateActiveLine = () => {
-    const targetY = window.innerHeight * 0.42;
-    let closest = lines[0];
-    let smallestDistance = Infinity;
+  // All content stays visible without JavaScript or when motion is reduced.
+  if ("IntersectionObserver" in window && !reducedMotion.matches) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("pending");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.07 },
+    );
+    document
+      .querySelectorAll(
+        ".section-heading, .about-grid, .skills-grid, .project, .timeline-item",
+      )
+      .forEach((element) => {
+        if (!element.closest("[hidden]")) {
+          element.classList.add("reveal", "pending");
+          revealObserver.observe(element);
+        }
+      });
+  }
 
-    lines.forEach((line) => {
-      const rect = line.getBoundingClientRect();
-      const distance = Math.abs(rect.top - targetY);
-      if (distance < smallestDistance) {
-        smallestDistance = distance;
-        closest = line;
+  const canvas = $("#particles");
+  const context = canvas.getContext("2d");
+  const hero = $(".hero");
+  const motionButton = $("#motion-toggle");
+  let pausedByUser = false;
+  let heroVisible = true;
+  let frame = null;
+  let previousTime = 0;
+  let width = 0;
+  let height = 0;
+  let points = [];
+
+  function resizeCanvas() {
+    width = hero.clientWidth;
+    height = hero.clientHeight;
+    const scale = Math.min(window.devicePixelRatio || 1, 1.5);
+    canvas.width = Math.round(width * scale);
+    canvas.height = Math.round(height * scale);
+    if (!context) return;
+    context.setTransform(scale, 0, 0, scale, 0, 0);
+    points = Array.from(
+      { length: Math.min(45, Math.round(width / 30)) },
+      () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.11,
+        vy: (Math.random() - 0.5) * 0.11,
+        radius: Math.random() * 1.1 + 0.5,
+      }),
+    );
+    drawParticles(0);
+  }
+
+  function drawParticles(delta) {
+    if (!context) return;
+    context.clearRect(0, 0, width, height);
+    points.forEach((point, index) => {
+      point.x = (point.x + point.vx * delta + width) % width;
+      point.y = (point.y + point.vy * delta + height) % height;
+      context.beginPath();
+      context.arc(point.x, point.y, point.radius, 0, Math.PI * 2);
+      context.fillStyle = "rgba(168,85,247,0.38)";
+      context.fill();
+      for (let next = index + 1; next < points.length; next++) {
+        const other = points[next];
+        const distance = Math.hypot(point.x - other.x, point.y - other.y);
+        if (distance < 115) {
+          context.beginPath();
+          context.moveTo(point.x, point.y);
+          context.lineTo(other.x, other.y);
+          context.strokeStyle = `rgba(168,85,247,${0.07 * (1 - distance / 115)})`;
+          context.lineWidth = 0.6;
+          context.stroke();
+        }
       }
     });
+  }
 
-    lines.forEach((line) => line.classList.toggle("is-active", line === closest));
-    const lineNumber = closest?.querySelector(".line-number")?.textContent || "1";
-    position.textContent = `Ln ${lineNumber}, Col 1`;
+  function tick(time) {
+    frame = null;
+    const delta = previousTime ? Math.min((time - previousTime) / 16.67, 3) : 1;
+    previousTime = time;
+    drawParticles(delta);
+    frame = window.requestAnimationFrame(tick);
+  }
 
-    if (minimapViewport) {
-      const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = pageHeight > 0 ? window.scrollY / pageHeight : 0;
-      minimapViewport.style.transform = `translateY(${progress * 400}%)`;
-    }
-  };
+  function updateMotion() {
+    const paused = pausedByUser || reducedMotion.matches;
+    document.body.classList.toggle("motion-paused", paused);
+    motionButton.hidden = reducedMotion.matches;
+    motionButton.setAttribute("aria-pressed", String(pausedByUser));
+    motionButton.innerHTML = pausedByUser
+      ? 'Retomar animações <span aria-hidden="true">▶</span>'
+      : 'Pausar animações <span aria-hidden="true">Ⅱ</span>';
+    if (frame !== null) window.cancelAnimationFrame(frame);
+    frame = null;
+    previousTime = 0;
+    if (!paused && !document.hidden && heroVisible && context)
+      frame = window.requestAnimationFrame(tick);
+    else drawParticles(0);
+  }
 
-  let ticking = false;
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateActiveLine();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-
-  menuToggle.addEventListener("click", () => {
-    const isOpen = explorer.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.setAttribute("aria-label", isOpen ? "Fechar navegação" : "Abrir navegação");
+  motionButton.addEventListener("click", () => {
+    pausedByUser = !pausedByUser;
+    updateMotion();
   });
-
-  navLinks.forEach((link) => link.addEventListener("click", () => {
-    explorer.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
-  }));
-
-  themeToggle.addEventListener("click", () => {
-    const isLight = document.body.classList.toggle("light-theme");
-    themeToggle.textContent = isLight ? "◑" : "◐";
-    showToast(isLight ? "Tema claro ativado — plot twist!" : "De volta ao lado escuro do código.");
-  });
-
-  const closePalette = () => {
-    palette.hidden = true;
-    paletteInput.value = "";
-  };
-
-  const openPalette = () => {
-    palette.hidden = false;
-    window.setTimeout(() => paletteInput.focus(), 0);
-  };
-
-  document.addEventListener("keydown", (event) => {
-    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
-      event.preventDefault();
-      palette.hidden ? openPalette() : closePalette();
-    }
-    if (event.key === "Escape" && !palette.hidden) closePalette();
-  });
-
-  palette.addEventListener("click", (event) => {
-    if (event.target === palette) closePalette();
-  });
-
-  paletteInput.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter") return;
-    const aliases = {
-      inicio: "hero", home: "hero", joao: "hero",
-      sobre: "about", about: "about",
-      skills: "skills", tecnologias: "skills",
-      projetos: "projects", projects: "projects",
-      contato: "contact", contact: "contact"
-    };
-    const query = paletteInput.value.trim().toLowerCase();
-    const destination = document.querySelector(`#${aliases[query] || query}`);
-    if (destination) {
-      destination.scrollIntoView({ behavior: "smooth" });
-      closePalette();
-    } else {
-      showToast("Comando não encontrado. Tente “projetos” ou “contato”.");
-    }
-  });
-
-  document.querySelector(".status-smile").addEventListener("click", () => {
-    showToast("Achievement unlocked: você lê a status bar! ☕");
-  });
-
-  let typedKeys = "";
-  document.addEventListener("keyup", (event) => {
-    if (event.key.length !== 1 || event.ctrlKey || event.metaKey) return;
-    typedKeys = (typedKeys + event.key.toLowerCase()).slice(-5);
-    if (typedKeys === "hello") showToast("Olá também! 👋 — João Vitor");
-  });
-
-  updateClock();
-  updateActiveLine();
-  window.setInterval(updateClock, 30000);
+  reducedMotion.addEventListener("change", updateMotion);
+  document.addEventListener("visibilitychange", updateMotion);
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      heroVisible = entry.isIntersecting;
+      updateMotion();
+    }).observe(hero);
+  }
+  if ("ResizeObserver" in window)
+    new ResizeObserver(resizeCanvas).observe(hero);
+  else window.addEventListener("resize", resizeCanvas, { passive: true });
+  resizeCanvas();
+  updateMotion();
 })();
