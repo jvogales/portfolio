@@ -60,7 +60,7 @@ Fine purple borders and restrained radial lighting. No large floating card shado
 
 ## Components
 
-Native anchors navigate. `.project` is the shared preview/category/index/title/description/technology/code-link pattern. Captures and prototypes open their local original images; illustrations are explicitly labeled. No false live-demo links.
+Native anchors navigate. `.project` is the shared preview/category/index/title/description/technology/code-link pattern. The entire Dedetizadora card opens its GitHub repository. The TaskFlow prototype opens its local original image; illustrations are explicitly labeled. No false live-demo links.
 
 The trajectory contains verified commercial and academic projects; it does not claim employment, dates, years of experience, employer logos or credentials that were not supplied. The third entry is revealed by the disclosure button, with aria-expanded and aria-controls. All entries remain available without JS.
 

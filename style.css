@@ -1793,3 +1793,12 @@ h2 {
     display: none;
   }
 }
+
+.project-card-link {
+  display: block;
+  height: 100%;
+}
+.project.featured:focus-within {
+  outline: 2px solid var(--accent-light);
+  outline-offset: 5px;
+}

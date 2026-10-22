@@ -14,7 +14,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 - `index.html`: dados pessoais, seções, trajetória, projetos e links.
 - `style.css`: tokens em `:root`, componentes e breakpoints.
 - `script.js`: menu mobile, seção ativa, trajetória expansível, clipboard, partículas e controle de animações.
-- `assets/previews`: captura da Dedetizadora e protótipo do TaskFlow; seus links abrem as imagens originais.
+- `assets/previews`: captura da Dedetizadora e protótipo do TaskFlow; o card da Dedetizadora abre o repositório no GitHub, e o preview do TaskFlow abre a imagem original.
 - `DESIGN.md`: direção visual e decisões de conteúdo.
 - `THIRD_PARTY_NOTICES.md`: fontes e referência visual.
 
