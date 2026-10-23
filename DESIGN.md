@@ -60,7 +60,7 @@ Fine purple borders and restrained radial lighting. No large floating card shado
 
 ## Components
 
-Native anchors navigate. `.project` is the shared preview/category/index/title/description/technology/code-link pattern. The entire Dedetizadora card opens its GitHub repository. The TaskFlow prototype opens its local original image; illustrations are explicitly labeled. No false live-demo links.
+Native anchors navigate. `.project` is the shared preview/category/index/title/description/technology/code-link pattern. The entire Dedetizadora card opens its GitHub repository. The entire WhatsApp Tracker card navigates to whatsapp-tracker.html in the same tab; that detail page shares the root stylesheet, provides return links and a GitHub action, and contains a noninteractive 16:9 demonstration placeholder until a real video is supplied. Do not show a play button or load an empty video/iframe before media exists. The TaskFlow prototype opens its local original image; illustrations are explicitly labeled. No false live-demo links.
 
 The trajectory contains verified commercial and academic projects; it does not claim employment, dates, years of experience, employer logos or credentials that were not supplied. The third entry is revealed by the disclosure button, with aria-expanded and aria-controls. All entries remain available without JS.
 

@@ -12,6 +12,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ## Editar
 
 - `index.html`: dados pessoais, seções, trajetória, projetos e links.
+- `whatsapp-tracker.html`: página do projeto, recursos e espaço para o vídeo de demonstração.
 - `style.css`: tokens em `:root`, componentes e breakpoints.
 - `script.js`: menu mobile, seção ativa, trajetória expansível, clipboard, partículas e controle de animações.
 - `assets/previews`: captura da Dedetizadora e protótipo do TaskFlow; o card da Dedetizadora abre o repositório no GitHub, e o preview do TaskFlow abre a imagem original.
@@ -28,3 +29,7 @@ git diff --check
 ```
 
 No navegador, confira o menu em celular e sua tecla Escape, os links internos, o botão de expandir a trajetória, a cópia do e-mail e seu feedback de erro, a pausa das animações e a preferência de movimento reduzido. Valide também 320px, 390px, tablet e desktop. Fontes e previews são locais.
+
+## Vídeo do WhatsApp Tracker
+
+Quando o vídeo estiver pronto, adicione o MP4 em `assets/videos/whatsapp-tracker.mp4`. Em `whatsapp-tracker.html`, substitua a `div.demo-placeholder` pelo elemento `<video>` que já está documentado no comentário HTML da seção de demonstração. A classe `demo-video` mantém o formato 16:9. Atualize a legenda da seção e inclua legendas em português com `<track>` quando houver áudio ou fala. Não é necessário alterar JavaScript ou instalar dependências.
