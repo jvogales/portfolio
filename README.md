@@ -35,3 +35,5 @@ No navegador, confira o menu em celular e sua tecla Escape, os links internos, o
 Quando o vídeo estiver pronto, adicione o MP4 em `assets/videos/whatsapp-tracker.mp4`. Em `whatsapp-tracker.html`, substitua a `div.demo-placeholder` pelo elemento `<video>` que já está documentado no comentário HTML da seção de demonstração. A classe `demo-video` mantém o formato 16:9. Atualize a legenda da seção e inclua legendas em português com `<track>` quando houver áudio ou fala. Não é necessário alterar JavaScript ou instalar dependências.
 
 A prévia da Dedetizadora usa um iframe carregado apenas ao abrir o card. Se a hospedagem passar a bloquear incorporação, o link “Abrir em nova aba” continua disponível. O botão Fechar e Escape retornam ao portfólio.
+
+Os cards TaskFlow e Jogos Cognitivos abrem explicações breves em diálogos na página principal. Os textos ficam em `index.html`, nos elementos `#summary-taskflow` e `#summary-jogos-cognitivos`. Ambos têm links para o código; TaskFlow também oferece o protótipo original.

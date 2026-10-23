@@ -147,6 +147,43 @@
     projectPreviewLink.focus({ preventScroll: true });
   });
 
+  document.querySelectorAll("[data-project-summary]").forEach((trigger) => {
+    const dialog = document.getElementById(
+      trigger.getAttribute("aria-controls"),
+    );
+    trigger.addEventListener("click", (event) => {
+      if (
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey ||
+        event.altKey ||
+        !dialog.showModal
+      )
+        return;
+      event.preventDefault();
+      dialog.showModal();
+      document.body.classList.add("preview-open");
+    });
+    dialog
+      .querySelector("button")
+      .addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target !== dialog) return;
+      const bounds = dialog.getBoundingClientRect();
+      if (
+        event.clientX < bounds.left ||
+        event.clientX > bounds.right ||
+        event.clientY < bounds.top ||
+        event.clientY > bounds.bottom
+      )
+        dialog.close();
+    });
+    dialog.addEventListener("close", () => {
+      document.body.classList.remove("preview-open");
+      trigger.focus({ preventScroll: true });
+    });
+  });
+
   const copyButton = $(".copy-button");
   const copyStatus = $("#copy-status");
   copyButton.addEventListener("click", async () => {
