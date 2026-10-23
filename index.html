@@ -955,10 +955,12 @@
           <article class="project featured">
             <a
               class="project-card-link"
-              href="https://github.com/jvogales/landing-page-dedetizadora"
+              href="https://jvogales.github.io/landing-page-dedetizadora/"
+              data-project-preview
+              aria-haspopup="dialog"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Ver Dedetizadora Orlandini no GitHub"
+              aria-label="Ver site da Dedetizadora Orlandini dentro do portfólio"
             >
               <div class="preview preview-business">
                 <div class="browser-top" aria-hidden="true">
@@ -971,7 +973,7 @@
                   alt="Captura da página inicial da Dedetizadora Orlandini"
                   loading="lazy"
                 /><span class="preview-action"
-                  >Ver no GitHub
+                  >Ver site
                   <svg
                     class="arrow"
                     aria-hidden="true"
@@ -998,7 +1000,7 @@
                     <li>JavaScript</li>
                   </ul>
                   <span class="project-link"
-                    >Código
+                    >Ver site
                     <svg
                       class="arrow"
                       aria-hidden="true"
@@ -1253,5 +1255,45 @@
           <path d="M5 19 19 5M5 5h14v14" /></svg
       ></a>
     </footer>
+    <dialog
+      class="site-preview"
+      id="site-preview"
+      aria-labelledby="site-preview-title"
+      aria-describedby="site-preview-description"
+    >
+      <div class="site-preview-panel">
+        <header class="site-preview-header">
+          <div>
+            <p class="section-tag">PREVIEW DO PROJETO</p>
+            <h2 id="site-preview-title">Dedetizadora Orlandini</h2>
+          </div>
+          <button type="button" class="site-preview-close" autofocus>
+            Fechar <span aria-hidden="true">×</span>
+          </button>
+        </header>
+        <p class="site-preview-description" id="site-preview-description">
+          Explore o site sem sair do portfólio. Feche esta janela para voltar
+          aos projetos.
+        </p>
+        <div class="site-preview-frame">
+          <p class="site-preview-loading" role="status">Carregando o site…</p>
+          <iframe
+            title="Site da Dedetizadora Orlandini"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+        <footer class="site-preview-footer">
+          <p>Se o site não aparecer aqui, abra-o em uma nova aba.</p>
+          <a
+            class="text-link"
+            href="https://jvogales.github.io/landing-page-dedetizadora/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Abrir em nova aba <span aria-hidden="true">↗</span></a
+          >
+        </footer>
+      </div>
+    </dialog>
   </body>
 </html>

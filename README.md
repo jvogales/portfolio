@@ -15,7 +15,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 - `whatsapp-tracker.html`: página do projeto, recursos e espaço para o vídeo de demonstração.
 - `style.css`: tokens em `:root`, componentes e breakpoints.
 - `script.js`: menu mobile, seção ativa, trajetória expansível, clipboard, partículas e controle de animações.
-- `assets/previews`: captura da Dedetizadora e protótipo do TaskFlow; o card da Dedetizadora abre o repositório no GitHub, e o preview do TaskFlow abre a imagem original.
+- `assets/previews`: captura da Dedetizadora e protótipo do TaskFlow; o card da Dedetizadora abre o site do GitHub Pages em uma janela dentro do portfólio, e o preview do TaskFlow abre a imagem original.
 - `DESIGN.md`: direção visual e decisões de conteúdo.
 - `THIRD_PARTY_NOTICES.md`: fontes e referência visual.
 
@@ -33,3 +33,5 @@ No navegador, confira o menu em celular e sua tecla Escape, os links internos, o
 ## Vídeo do WhatsApp Tracker
 
 Quando o vídeo estiver pronto, adicione o MP4 em `assets/videos/whatsapp-tracker.mp4`. Em `whatsapp-tracker.html`, substitua a `div.demo-placeholder` pelo elemento `<video>` que já está documentado no comentário HTML da seção de demonstração. A classe `demo-video` mantém o formato 16:9. Atualize a legenda da seção e inclua legendas em português com `<track>` quando houver áudio ou fala. Não é necessário alterar JavaScript ou instalar dependências.
+
+A prévia da Dedetizadora usa um iframe carregado apenas ao abrir o card. Se a hospedagem passar a bloquear incorporação, o link “Abrir em nova aba” continua disponível. O botão Fechar e Escape retornam ao portfólio.

@@ -94,6 +94,59 @@
     }
   });
 
+  const projectPreviewLink = $("[data-project-preview]");
+  const projectPreviewDialog = $("#site-preview");
+  const projectPreviewFrame = projectPreviewDialog.querySelector("iframe");
+  const projectPreviewLoading = projectPreviewDialog.querySelector(
+    ".site-preview-loading",
+  );
+  let previewTimer;
+
+  projectPreviewLink.addEventListener("click", (event) => {
+    if (
+      event.ctrlKey ||
+      event.metaKey ||
+      event.shiftKey ||
+      event.altKey ||
+      !projectPreviewDialog.showModal
+    )
+      return;
+    event.preventDefault();
+    projectPreviewLoading.textContent = "Carregando o site…";
+    projectPreviewLoading.hidden = false;
+    projectPreviewDialog.showModal();
+    document.body.classList.add("preview-open");
+    projectPreviewFrame.src = projectPreviewLink.href;
+    previewTimer = window.setTimeout(() => {
+      projectPreviewLoading.textContent =
+        "O carregamento pode levar alguns instantes. Se o site não aparecer, use o link abaixo.";
+    }, 12000);
+  });
+  projectPreviewFrame.addEventListener("load", () => {
+    window.clearTimeout(previewTimer);
+    projectPreviewLoading.hidden = true;
+  });
+  projectPreviewDialog
+    .querySelector(".site-preview-close")
+    .addEventListener("click", () => projectPreviewDialog.close());
+  projectPreviewDialog.addEventListener("click", (event) => {
+    if (event.target !== projectPreviewDialog) return;
+    const bounds = projectPreviewDialog.getBoundingClientRect();
+    if (
+      event.clientX < bounds.left ||
+      event.clientX > bounds.right ||
+      event.clientY < bounds.top ||
+      event.clientY > bounds.bottom
+    )
+      projectPreviewDialog.close();
+  });
+  projectPreviewDialog.addEventListener("close", () => {
+    window.clearTimeout(previewTimer);
+    projectPreviewFrame.removeAttribute("src");
+    document.body.classList.remove("preview-open");
+    projectPreviewLink.focus({ preventScroll: true });
+  });
+
   const copyButton = $(".copy-button");
   const copyStatus = $("#copy-status");
   copyButton.addEventListener("click", async () => {
